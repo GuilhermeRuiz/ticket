@@ -1,8 +1,9 @@
 GIT
-  remote: git://github.com/ctran/annotate_models.git
-  revision: cfeec96c9ca0fa5035b10be3d73e798cc4fc52f7
+  remote: git://github.com/stouset/twitter_bootstrap_form_for.git
+  revision: 2cb136c88f77b6013c892989a1d11024bdb4a6fe
   specs:
-    annotate (2.4.1.beta1)
+    twitter_bootstrap_form_for (1.0.1)
+      rails (~> 3)
 
 GEM
   remote: http://rubygems.org/
@@ -36,6 +37,7 @@ GEM
       activesupport (= 3.1.0)
     activesupport (3.1.0)
       multi_json (~> 1.0)
+    annotate (2.4.0)
     arel (2.2.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.0)
@@ -145,7 +147,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  annotate!
+  annotate
   coffee-rails (~> 3.1.0)
   factory_girl_rails
   faker
@@ -158,6 +160,7 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   spork
   sqlite3
+  twitter_bootstrap_form_for!
   uglifier
   webrat
   will_paginate

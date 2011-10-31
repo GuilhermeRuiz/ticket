@@ -1,0 +1,23 @@
+<%= twitter_bootstrap_form_for @usuario do |user| %>
+
+  <%= user.text_field :nome , 'Nome' %>
+
+  <%= user.email_field :email , 'E-mail' , :placeholder => 'exemplo@exemplo.com.br' %>
+
+  <%= user.password_field :senha , 'Senha' do %>
+    <span class="help-block">
+      A senha deve possuir de 6 a 40 caracteres.
+    </span>
+  <% end %>
+
+  <%= user.password_field :senha_confirmation, 'Confirmar Senha' %>
+
+  <% user.toggles 'Email Preferences' do %>
+    <% user.radio_button :email, 'HTML Email', :html, :checked => true %>
+    <% user.radio_button :email, 'Plain Text', :plain %>
+  <% end  %>
+
+  <%= user.actions do %>
+    <%= user.submit 'Editar' , :class => 'btn large' %>
+  <% end %>
+<% end %>

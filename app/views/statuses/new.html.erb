@@ -1,0 +1,11 @@
+<%= twitter_bootstrap_form_for @status do |item_status| %>
+
+  <%= item_status.text_field :titulo , 'Titulo' %>
+
+  <%= item_status.text_area :descricao , 'Descricao' %>
+
+  <%= item_status.actions do %>
+    <%= item_status.submit 'Cadastrar' , :class => 'btn large' %>
+  <% end %>
+
+<% end %>

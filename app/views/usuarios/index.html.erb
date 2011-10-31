@@ -1,0 +1,11 @@
+<%= will_paginate %>
+
+<ul>
+<% @usuarios.each do |usuario| %>
+  <li>
+    <%= link_to usuario.nome, usuario %>
+  </li>
+<% end %>
+</ul>
+
+<%= will_paginate %>
