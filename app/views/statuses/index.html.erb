@@ -1,0 +1,15 @@
+
+
+<%= will_paginate %>
+
+<ul>
+<% @statuses.each do |status| %>
+  <li>
+    <%= link_to status.titulo, status %>
+    | <%= link_to "editar", edit_status_path(status) %>
+    | <%= link_to "remover", status, :method => :delete, :confirm => "Tem certeza que deseja remover este status?", :title => "Remover #{status.titulo}" %>
+  </li>
+<% end %>
+</ul>
+
+<%= will_paginate %>

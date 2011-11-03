@@ -1,11 +1,13 @@
-<%= twitter_bootstrap_form_for @chamado do |item_chamado| %>
+<%= twitter_bootstrap_form_for @chamado do |form_chamado| %>
 
-  <%= item_chamado.text_field :titulo , 'Titulo' %>
+  <%= form_chamado.text_field :titulo , 'Titulo' %>
 
-  <%= item_chamado.text_area :descricao , 'Descricao' %>
+  <%= form_chamado.text_area :descricao , 'Descricao' %>
 
-  <%= item_chamado.actions do %>
-    <%= item_chamado.submit 'Cadastrar' , :class => 'btn large' %>
+  <%= form_chamado.collection_select :id_usuario_responsavel , "Responsavel" , @usuarios, :id, :nome  %>
+  
+  <%= form_chamado.actions do %>
+    <%= form_chamado.submit 'Cadastrar' , :class => 'btn large' %>
   <% end %>
 
 <% end %>

@@ -681,6 +681,7 @@ select[multiple] {
 textarea {
   height: auto;
 }
+
 .uneditable-input {
   background-color: #ffffff;
   display: block;

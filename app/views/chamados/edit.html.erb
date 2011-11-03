@@ -1,0 +1,19 @@
+<%= twitter_bootstrap_form_for @chamado do |item_chamado| %>
+
+  <%= item_chamado.text_field :titulo , 'Titulo' %>
+
+  <%= item_chamado.text_area :descricao , 'Descricao' %>
+
+  <% if (usuario_atual.id.to_s == @chamado.id_usuario_criador.to_s) || usuario_atual.administrador? %>
+    <%= item_chamado.collection_select :id_usuario_responsavel , "Responsavel" , @usuarios, :id, :nome  %>
+  <% end %>
+
+  <% if ( usuario_atual.id.to_s == @chamado.id_usuario_responsavel.to_s ) || usuario_atual.administrador? %>
+    <%= item_chamado.collection_select :id_status , "Status" , @status, :id, :titulo  %>
+  <% end %>
+  
+  <%= item_chamado.actions do %>
+    <%= item_chamado.submit 'Editar' , :class => 'btn large' %>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,20 @@
+<% if @chamados.count > 0 %>
+
+<%= will_paginate %>
+
+<ul>
+<% @chamados.each do |chamado| %>
+  <li>
+    <%= link_to chamado.titulo, chamado %>
+    <% if (usuario_atual.id.to_s == chamado.id_usuario_criador.to_s) || usuario_atual.administrador? %>
+      | <%= link_to "remover", chamado, :method => :delete, :confirm => "Tem certeza que deseja remover este chamado?", :title => "Remover #{chamado.titulo}" %>
+    <% end %>
+  </li>
+<% end %>
+</ul>
+
+<%= will_paginate %>
+
+<% else %>
+<h4>Não há chamados cadastrados.</h4>
+<% end %>

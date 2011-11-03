@@ -14,16 +14,33 @@
   <div class="topbar-inner">
     <div class="container-fluid">
       <a class="brand" href="#">TICKET</a>
-      <ul class="nav">
-        <li class="active"><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Cadastre-se", cadastro_path %></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <form action="" class="pull-right">
-        <input class="input-small" type="text" placeholder="Username">
-        <input class="input-small" type="password" placeholder="Password">
-        <button class="btn" type="submit">Sign in</button>
-      </form>
+      <%  if logado? %>
+        <ul class="nav">
+          <li class="active"><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Cadastrar chamado", new_chamado_path %></li>
+          <li><%= link_to "Lista de chamados", chamados_path %></li>
+          <li><%= link_to "Lista de usuários", usuarios_path %></li>
+          <% if usuario_atual.administrador? %>
+            <li><%= link_to "Cadastrar status", new_status_path %></li>
+            <li><%= link_to "Listar status", statuses_path %></li>
+          <% end %>
+        </ul>
+        <ul class="secondary-nav">
+          <li><%= link_to usuario_atual.nome, usuario_atual %></li>
+          <li><%= link_to "Alterar cadastro", edit_usuario_path(usuario_atual) %></li>
+          <li><%= link_to "Sair", sair_path %></li>
+        </ul>
+      <% else %>
+        <ul class="nav">
+          <li class="active"><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Cadastre-se", cadastro_path %></li>
+        </ul>
+        <%= form_for(:session, :url => sessions_path , :html => {:class => "pull-right" }) do |f| %>
+          <%= f.text_field :email , :placeholder => "E-mail" %>
+          <%= f.password_field :senha, :palceholder => "Senha" %>
+          <%= f.submit :name => "btn_login" , :value => "Entrar" , :class => "" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -31,6 +48,6 @@
 <div class="container">
   <div class="content">
     <div class="page-header">
-      <h1>Ticket<small> Bugtracker</small></h1>
+      <h1>Ticket<small> Sistema de chamados </small></h1>
     </div>
     <div class="row">

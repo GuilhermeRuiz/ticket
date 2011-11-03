@@ -1,2 +1,11 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<p>
+  Sistema de cadastro de chamados(tickets) para monitoramento e solução de pendências.
+  
+  Somente usuários cadasrados podem abrir um chamado e visualizar outros chamados aqui cadastrados.
+</p>
+<p>
+  Caso não tenha um cadastro, clique aqui: <%= link_to "Cadastre-se", cadastro_path%>
+</p>  
+<p>
+  Caso já possua um cadastro, clique no link asseguir para entrar no sistema: <%= link_to "Entrar", entrar_path%>
+</p>

@@ -1,0 +1,77 @@
+<table>
+  <tr>
+    <td>Título</td>
+    <td><strong><%= @chamado.titulo %></strong></td>
+  </tr>
+  <tr>
+    <td>Descrição</td>
+    <td><%= @chamado.descricao %></td>
+  </tr>
+  <tr>
+    <td>Status</td>
+    <td><%= @status.titulo %></td>
+  </tr>
+  <tr>
+    <td>Usuário responsável</td>
+    <td><%= "#{@usuario_responsavel.nome} (#{@usuario_responsavel.email})" %></td>
+  </tr>
+  <tr>
+    <td>Criado por</td>
+    <td><%= "#{@usuario_criador.nome} (#{@usuario_criador.email})" %></td>
+  </tr>
+  <tr>
+    <td>Criado em</td>
+    <td><%= @chamado.created_at %></td>
+  </tr>  
+  <tr>
+    <td>Atualizado em</td>
+    <td><%= @chamado.updated_at %></td>
+  </tr>  
+</table>
+
+<h3> Comentários: </h3>
+
+<% if @comentarios.count > 0 %>
+
+  <%= will_paginate @comentarios %>
+    <table>
+    <% @comentarios.each do |comentario|
+        usuario = Usuario.find(comentario.id_usuario)
+    %>
+        <td>Assunto </td>
+        <td colspan="2">
+          <%= comentario.assunto %>
+          <% if (usuario_atual.id.to_s == usuario.id.to_s) || usuario_atual.administrador? %>
+            | <%= link_to "remover", comentario, :method => :delete, :confirm => "Tem certeza que deseja remover este comentario?", :title => "Remover #{comentario.assunto}" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Por </td>
+        <td><%= "#{usuario.nome} (#{usuario.email})" %></td>
+        <td><%= comentario.created_at %></td>
+      </tr>
+      <tr>
+        <td colspan="3"><%= comentario.texto %></td>
+      </tr>
+    <% end %>
+    </table>
+  <%= will_paginate @comentarios %>
+
+<% else %>
+  <p>Nao há comentários neste chamado.</p>
+<% end %>
+  
+  
+<h3> Faça um comentário: </h3>  
+<%= twitter_bootstrap_form_for @comentario do |comentario| %>
+
+  <%= comentario.text_field :assunto , 'Assunto' %>
+  <%= comentario.text_area :texto , 'Texto', :class => "custom" %>
+
+
+  <%= comentario.actions do %>
+    <%= comentario.submit 'Comentar' , :class => 'btn large' %>
+  <% end %>
+
+<% end %>

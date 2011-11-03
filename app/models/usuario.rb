@@ -2,7 +2,7 @@ require 'digest'
 
 class Usuario < ActiveRecord::Base
   
-  has_many :chamado, :dependent => :destroy
+  has_many :chamado, :foreign_key => :id_usuario_criador , :dependent => :destroy
   
   attr_accessor :senha
   attr_accessible :nome, :email, :senha, :senha_confirmation
@@ -13,35 +13,35 @@ class Usuario < ActiveRecord::Base
   validates :email, :presence => true, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
   validates :senha, :presence => true, :confirmation => true, :length =>  { :within => 6..40 }
   
-  before_save :encrypt_senha
+  before_save :criptografar_senha
   
-  def has_senha? (submitted_senha)
-    senha_criptografada == encrypt(submitted_senha)
+  def has_senha? (senha_recebida)
+    senha_criptografada == criptografar(senha_recebida)
   end
   
-  def self.authenticate(email, submitted_senha) 
-    user = find_by_email(email)
-    return nil if user.nil?
-    return user if user.has_senha?(submitted_senha)
+  def self.autenticar(email, senha_recebida) 
+    usuario = find_by_email(email)
+    return nil if usuario.nil?
+    return usuario if usuario.has_senha?(senha_recebida)
   end
   
-  def self.pegar_salt(email)
+  def self.get_salt(email)
     user = find_by_email(email)
     print user.salt
   end
   
-  def self.authenticate_with_salt(id, cookie_salt)
-    user = find_by_id(id)
-    (user && user.salt == cookie_salt)? user : nil
+  def self.autenticar_com_salt(id, cookie_salt)
+    usuario = find_by_id(id)
+    (usuario && usuario.salt == cookie_salt)? usuario : nil
   end
   
   private
-    def encrypt_senha
+    def criptografar_senha
       self.salt = make_salt if new_record?
-      self.senha_criptografada = encrypt(senha)
+      self.senha_criptografada = criptografar(senha)
     end
     
-    def encrypt(string)
+    def criptografar(string)
       secure_hash("#{salt}--#{string}")
     end
     

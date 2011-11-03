@@ -1,4 +1,7 @@
-class StatusesController < ApplicationController
+class StatusesController < ConteudoRestrito
+  
+  before_filter :verificar_administrador
+  
   def new
     @titulo = "Cadastrar status"
     @status = Status.new
@@ -7,9 +10,8 @@ class StatusesController < ApplicationController
   def create
     @status = Status.new(params[:status])
     if @status.save
-      #sign_in @user
       flash[:success] = "Status cadastrado com sucesso."
-      redirect_to @status
+      redirect_to statuses_path
     else
       @title = "Cadastrar status"
       render 'new'
@@ -36,4 +38,22 @@ class StatusesController < ApplicationController
       render 'edit'
     end
   end
+  
+  def index
+    @statuses = Status.paginate(:page => params[:page])
+    @titulo   = "Lista de status"
+  end
+  
+  def destroy
+    Status.find(params[:id]).destroy
+    flash[:success] = "Status removido."
+    redirect_to statuses_path
+  end
+  
+  private
+
+    def verificar_administrador
+      redirect_to(root_path) unless usuario_atual.administrador?
+    end
+  
 end

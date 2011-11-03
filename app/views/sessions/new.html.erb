@@ -1,0 +1,10 @@
+<%= twitter_bootstrap_form_for(:session, :url => sessions_path) do |f| %>
+  <%= f.email_field    :email , 'E-mail' %>
+  <%= f.password_field :senha , 'Senha' %>
+
+  <%= f.actions do %>
+    <%= f.submit 'Entrar' , :class => 'btn large' %>
+  <% end %>
+<% end %>
+
+<p>Não possui cadastro? <%= link_to "Clique aqui!", cadastro_path %></p>
