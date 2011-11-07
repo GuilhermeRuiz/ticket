@@ -61,7 +61,7 @@ class UsuariosController < ConteudoRestrito
   def destroy
     Usuario.find(params[:id]).destroy
     flash[:success] = "Usuario removido."
-    redirect_to usuario_path
+    redirect_to usuarios_path
   end
   
   private
