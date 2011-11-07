@@ -6,8 +6,8 @@
     <%= link_to usuario.nome, usuario %>
     <% if usuario_atual.administrador? %>
       | <%= link_to "editar", edit_usuario_path(usuario) %>
-    <% end %>
       | <%= link_to "remover", usuario, :method => :delete, :confirm => "Tem certeza que deseja remover este usuario?", :title => "Remover #{usuario.nome}" %>
+    <% end %>
   </li>
 <% end %>
 </ul>
