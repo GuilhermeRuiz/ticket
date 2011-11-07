@@ -1,6 +1,6 @@
 <%= render 'layouts/header' %>
       <% flash.each do |key, value| %>
-        <div class="flash <%= key%>"><%= value %></div>
+        <div class="alert-message block-message <%= key%>"><%= value %></div>
       <% end %>
       <div class="span10">
         <h2><%= @titulo %></h2>

@@ -4,8 +4,8 @@ class ChamadosController < ConteudoRestrito
   
   def new
     @titulo   = "Cadastrar chamado"
-    @usuarios = Usuario.all
     @chamado  = Chamado.new
+    @usuarios = Usuario.all
   end
   
   def create
@@ -18,6 +18,7 @@ class ChamadosController < ConteudoRestrito
       redirect_to @chamado
     else
       @title = "Cadastrar"
+      @usuarios = Usuario.all
       render 'new'
     end
   end

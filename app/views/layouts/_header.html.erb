@@ -26,7 +26,7 @@
           <% end %>
         </ul>
         <ul class="secondary-nav">
-          <li><%= link_to usuario_atual.nome, usuario_atual %></li>
+          <li><%= link_to "Meus chamados", usuario_atual %></li>
           <li><%= link_to "Alterar cadastro", edit_usuario_path(usuario_atual) %></li>
           <li><%= link_to "Sair", sair_path %></li>
         </ul>
@@ -36,8 +36,8 @@
           <li><%= link_to "Cadastre-se", cadastro_path %></li>
         </ul>
         <%= form_for(:session, :url => sessions_path , :html => {:class => "pull-right" }) do |f| %>
-          <%= f.text_field :email , :placeholder => "E-mail" %>
-          <%= f.password_field :senha, :palceholder => "Senha" %>
+          <%= f.text_field :email , :placeholder => "E-mail"  %>
+          <%= f.password_field :senha, :placeholder => "Senha" %>
           <%= f.submit :name => "btn_login" , :value => "Entrar" , :class => "" %>
         <% end %>
       <% end %>
@@ -50,4 +50,4 @@
     <div class="page-header">
       <h1>Ticket<small> Sistema de chamados </small></h1>
     </div>
-    <div class="row">
+    <div class="row ">

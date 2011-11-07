@@ -1,0 +1,31 @@
+<div>
+  
+  <% if ! @chamados_criados.empty? %>
+    <h3>Criados</h3>
+    <%= will_paginate @chamados_criados %>
+      <ul>
+        <% @chamados_criados.each do |item| %>
+          <li><%= item.titulo %></li>
+        <% end %>
+      </ul>
+    <%= will_paginate @chamados_criados%>
+  <% else %>
+    <% if  @usuario == @usuario_atual %>
+      <p> Você ainda não criou nenhum chamado. Clique <%= link_to "aqui", new_chamado_path %> para abrir um chamado.</p>
+    <% else  %>
+      <p> Este usuário ainda não criou nenhum chamado.</p>
+    <% end  %>
+  <% end %>
+</div>
+<div>
+  <% if ! @chamados_comentados.empty? %>
+    <h3>Comentados</h3>
+    <%= will_paginate @chamados_comentados %>
+      <ul>
+        <% @chamados_comentados.each do |item| %>
+          <li><%= item.titulo %></li>
+        <% end %>
+      </ul>
+    <%= will_paginate @chamados_comentados %>
+  <% end %>
+</div>

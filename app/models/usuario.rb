@@ -2,7 +2,8 @@ require 'digest'
 
 class Usuario < ActiveRecord::Base
   
-  has_many :chamado, :foreign_key => :id_usuario_criador , :dependent => :destroy
+  has_many :chamados, :foreign_key => :id_usuario_criador, :dependent => :destroy
+  has_many :comentarios, :foreign_key => :id_usuario, :dependent => :destroy
   
   attr_accessor :senha
   attr_accessible :nome, :email, :senha, :senha_confirmation

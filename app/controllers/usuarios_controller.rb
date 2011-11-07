@@ -37,8 +37,17 @@ class UsuariosController < ConteudoRestrito
   end
   
   def show
-    @usuario  = Usuario.find(params[:id])
-    @titulo   = @usuario.nome
+    @usuario             = Usuario.find(params[:id])
+    @titulo              = "Chamados criados por #{@usuario.nome}"
+    
+    if @usuario == @usuario_atual
+      @titulo            = "Meus chamados"
+    end
+    
+    @chamados_criados    = Chamado.paginate(:page => params[:page]).where(:id_usuario_criador => params[:id])
+    comentarios          = @usuario.comentarios
+    @chamados_comentados = Chamado.paginate(:page => params[:page], :joins => "INNER JOIN comentarios ON chamados.id = comentarios.id_chamado" , :conditions => " comentarios.id IN  (#{comentarios.map(&:id).join( ", " )})", :group => "chamados.id")
+    
   end
   
   def index

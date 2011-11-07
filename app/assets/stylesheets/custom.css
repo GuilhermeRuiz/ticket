@@ -32,6 +32,10 @@ body {
     margin: -20px -20px 20px;
 }
 
+.row {
+    margin-left: 0px !important;
+}
+
 /* Styles you shouldn't keep as they are for displaying this base example only */
 .content .span10,
 .content .span4 {
@@ -49,5 +53,17 @@ body {
 }
 
 textarea.custom {
-  height: 150px;
+    height: 150px;
+}
+
+.previous_page {
+    float:left !important;
+    line-height:34px;
+}
+
+em {
+    float:left !important;
+    line-height:34px;
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 0 14px;
 }

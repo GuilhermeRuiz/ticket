@@ -4,7 +4,11 @@
 
   <%= form_chamado.text_area :descricao , 'Descricao' %>
 
-  <%= form_chamado.collection_select :id_usuario_responsavel , "Responsavel" , @usuarios, :id, :nome  %>
+  <% if @usuarios != nil %>
+    <% if ! @usuarios.empty? %>
+      <%= form_chamado.collection_select :id_usuario_responsavel , "Responsavel" , @usuarios, :id, :nome  %>
+    <% end %>
+  <% end %>
   
   <%= form_chamado.actions do %>
     <%= form_chamado.submit 'Cadastrar' , :class => 'btn large' %>

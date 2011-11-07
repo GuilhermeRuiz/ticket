@@ -1,6 +1,10 @@
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails
 "pt-BR":
+  will_paginate:
+      previous_label: "&#8592; Anterior"
+      next_label: "Próximo &#8594;"
+      page_gap: "&hellip;"      
   # formatos de data e hora
   date:
     formats:
