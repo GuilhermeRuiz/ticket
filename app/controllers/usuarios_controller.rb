@@ -46,7 +46,7 @@ class UsuariosController < ConteudoRestrito
     
     @chamados_criados    = Chamado.paginate(:page => params[:page]).where(:id_usuario_criador => params[:id])
     comentarios          = @usuario.comentarios
-    @chamados_comentados = Chamado.paginate(:page => params[:page], :joins => "INNER JOIN comentarios ON chamados.id = comentarios.id_chamado" , :conditions => " comentarios.id IN  (#{comentarios.map(&:id).join( ", " )})", :group => "chamados.id")
+    @chamados_comentados = Chamado.paginate(:page => params[:page], :joins => "INNER JOIN comentarios ON chamados.id = comentarios.id_chamado" , :conditions => " comentarios.id IN  (#{comentarios.map(&:id).join( ", " )})", :group => "chamados.id, chamados.titulo")
     
   end
   
