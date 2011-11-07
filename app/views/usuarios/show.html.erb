@@ -5,7 +5,7 @@
     <%= will_paginate @chamados_criados %>
       <ul>
         <% @chamados_criados.each do |item| %>
-          <li><%= item.titulo %></li>
+          <li><%= link_to item.titulo, item %></li>
         <% end %>
       </ul>
     <%= will_paginate @chamados_criados%>
@@ -23,7 +23,7 @@
     <%= will_paginate @chamados_comentados %>
       <ul>
         <% @chamados_comentados.each do |item| %>
-          <li><%= item.titulo %></li>
+          <li><%= link_to item.titulo, item %></li>
         <% end %>
       </ul>
     <%= will_paginate @chamados_comentados %>
